@@ -4,6 +4,8 @@
  */
 package gui;
 
+import java.util.Random;
+
 /**
  *
  * @author SzalaiZoltánGábor(Sz
@@ -27,7 +29,6 @@ public class gui extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        spEredmeny = new javax.swing.JScrollPane();
         jLabel1 = new javax.swing.JLabel();
         chKo = new javax.swing.JCheckBox();
         chPapir = new javax.swing.JCheckBox();
@@ -35,6 +36,8 @@ public class gui extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnStart = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textAreaResult = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +75,10 @@ public class gui extends javax.swing.JFrame {
             }
         });
 
+        textAreaResult.setColumns(20);
+        textAreaResult.setRows(5);
+        jScrollPane1.setViewportView(textAreaResult);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -89,16 +96,15 @@ public class gui extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 44, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(spEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(chKo)
-                            .addGap(44, 44, 44)
-                            .addComponent(chPapir)
-                            .addGap(41, 41, 41)
-                            .addComponent(chOllo))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(chKo)
+                        .addGap(44, 44, 44)
+                        .addComponent(chPapir)
+                        .addGap(41, 41, 41)
+                        .addComponent(chOllo))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(48, 48, 48))
         );
         jPanel1Layout.setVerticalGroup(
@@ -116,9 +122,9 @@ public class gui extends javax.swing.JFrame {
                 .addComponent(btnStart)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spEredmeny, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,9 +154,33 @@ public class gui extends javax.swing.JFrame {
     }//GEN-LAST:event_chKoActionPerformed
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        // TODO add your handling code here:
+        Random random = new Random();
+        boolean koValasztas = chKo.isSelected();
+        boolean papirValasztas = chKo.isSelected();
+        boolean olloValasztas = chKo.isSelected();
+        
+        String[] options = {"Ko", "Papir", "Ollo"};
+        int userChoice;
+        if (koValasztas) {
+            userChoice = 1;
+        } else if (papirValasztas) {
+            userChoice = 2;
+        } else if (olloValasztas)
+            userChoice = 3;
+        else {
+            textAreaResult.setText("Kérlek válassz ki valamit!");
+        }
+        String felhasznaloValasztas = valaszthatok[userChoice - 1];
+        int compChoice = random.nextInt(3) + 1;
+        String gepValasztas = valaszthatok[compChoice - 1];
+        
+        textAreaResult.setText("A választásod: " + felhasznaloValasztas + "\n"
+                
+                
+                               
     }//GEN-LAST:event_btnStartActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
@@ -195,6 +225,7 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane spEredmeny;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea textAreaResult;
     // End of variables declaration//GEN-END:variables
 }
