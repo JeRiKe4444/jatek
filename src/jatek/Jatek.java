@@ -4,17 +4,35 @@
  */
 package jatek;
 
+import java.util.Scanner;
+import java.util.Random;
 /**
  *
  * @author SzalaiZoltánGábor(Sz
  */
 public class Jatek {
-
-    /**
-     * @param args the command line arguments
-     */
+    
+   
     public static void main(String[] args) {
-        // TODO code application logic here
+       Scanner sc = new Scanner(System.in);
+       Random random = new Random();
+       //System.out.println("Egész : ");
+       //int egesz = sc.nextInt();
+       //System.out.println("A bekért szám duplája : " + egesz*2);
+       //sc.nextLine();
+       //System.out.print("Szöveg : ");
+       //String szoveg = sc.nextLine();
+       //System.out.println("A bekért szöveg : " + szoveg);
+       System.out.println("Döntésed: ");
+       String userChoice = sc.nextLine();
+       System.out.println("A döntésed: " + userChoice);
+       
+       String[] randomChoices = ("kő, papír, olló");
+       int compIndex = random.nextInt(3);
+       System.out.println("A döntésed: " + computerChoice);
+       
+       
+       
     }
     
 }
